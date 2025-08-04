@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package grpc.options.v1;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/0xef53/go-grpc/options";
+
+extend google.protobuf.FieldOptions {
+    FieldLogging log_formatting = 55001;
+}
+
+message FieldLogging {
+    enum DisplayType {
+        Show = 0;
+        Hide = 1;
+        Obfuscate = 2;
+        TrimHead = 3;
+        TrimTail = 4;
+        TrimMiddle = 5;
+    }
+    DisplayType display = 1;
+    string replacement = 2;
+    int64 head_chars = 3;
+    int64 tail_chars = 4;
+}
